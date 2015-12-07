@@ -1,0 +1,260 @@
+body {
+	background: #EBEBEB;
+	font-family: 'Source Sans Pro', sans-serif;
+	color: rgb(130, 130, 130);
+}
+.no-margin {
+	margin: 0px !important;
+}
+a {
+	color: rgb(36, 183, 186);
+}
+a:focus, a:hover {
+	color: #23787C;
+	text-decoration: inherit;
+}
+.navbar-nav {
+	width: 100%;
+}
+.nav>li {
+	width: 25%;
+}
+.navbar-default{
+	background-color: #ffffff;
+}
+.panel-default>.panel-heading {
+	background-color: #ffffff;
+	color: rgb(130, 130, 130);
+}
+.navbar.navbar-default {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	margin-bottom: 25px;
+	border-bottom: 2px solid rgb(217,217,217);
+}
+.navbar.navbar-default .container-fluid .navbar-collapse {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.navbar-default .navbar-nav>li>a {
+	padding-left: 30px;
+	padding-right: 30px;
+	color: rgb(173, 173, 173);
+	text-align: center;
+}
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+	color: #fff;
+	background-color: rgb(185, 185, 185);
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+	color: #fff;
+	background-color: rgb(57, 197, 193);
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+	color: #fff;
+	background-color: rgb(27, 154, 151);
+}
+.panel-success {
+	border-color: rgb(0,204,204);
+}
+.panel-success>.panel-heading {
+	color: #fff;
+	background-color: rgb(0,204,204);
+	border-color: rgb(0,204,204);
+}
+.panel-default.sida>.panel-heading {
+	background-color: #1ABC9C;
+}
+.top_box {
+	position: absolute;
+	top: 0px;
+	left: 0;
+	width: 100%;
+	height: 125px;
+	background: #00A6CC;
+	z-index: -999;
+}
+.title {
+	color: #ffffff;
+	margin-bottom: 17px;
+	text-transform: uppercase;
+	font-weight: 100;
+}
+.content-holder {
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-box-shadow: 1px 2px 1px #d1d1d1;
+	-moz-box-shadow: 1px 2px 1px #d1d1d1;
+	box-shadow: 1px 2px 1px #d1d1d1;
+	margin-bottom: 20px;
+	background-color: #fff;
+	padding: 15px;
+}
+#chartContainer {
+	padding: 20px 30px;
+}
+.actionButton {
+	display: inline-block;
+	color: #666;
+	background-color: #eee;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 12px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid rgba(0,0,0,0.3);
+	border-bottom-width: 3px;
+	background-color: #699DB6;
+	border-color: rgba(0,0,0,0.3);
+	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+	color: #FFF;
+	transition: all 0.3s ease 0s;
+	-moz-transition: all 0.3s ease 0s;
+	-webkit-transition: all 0.3s ease 0s;
+}
+.actionButton:hover {
+	background-color: #4F87A2;
+	border-color: rgba(0,0,0,0.5);
+	transition: all 0.3s ease 0s;
+	-moz-transition: all 0.3s ease 0s;
+	-webkit-transition: all 0.3s ease 0s;
+}
+.actionButton:active {
+	background-color: #3C677B;
+	border-color: rgba(0,0,0,0.9);
+	outline: none;
+}
+.actionButton:focus {
+	outline: none;
+}
+footer {
+	margin-top: 20px;
+	padding-bottom: 15px;
+	padding-top: 25px;
+	color: #ffffff;
+	background-color: #616161;
+	font-weight: 100;
+	letter-spacing: 0.5px;
+}
+hr {
+	border-top: 1px dotted #C5C5C5;
+}
+.subtitle {
+	margin: 0px 10px 20px;
+}
+.dataTables_filter {
+	float: right;
+}
+
+/* SIDEBAR STYLES */
+/* TOSCA 1 : MOST DARK*/
+.square-button-tosca-1 {
+	background-color: #168E8E !important;
+	border-radius: 0px !important;
+	color: #ffffff !important;
+}
+
+.square-button-tosca-1 > a {
+	color: #ffffff;
+	font-size: 16px;
+}
+
+.square-button-tosca-1 > a:focus, .square-button-tosca-1 > a:hover {
+	color: #23787C;
+	text-decoration: inherit;
+	font-size: 16px;
+}
+
+/* TOSCA 2 : LIGHTER THAN TOSCA 1*/
+.square-button-tosca-2 {
+	background-color: #1EB2B2 !important;
+	border-radius: 0px !important;
+	color: #ffffff !important;
+}
+
+.square-button-tosca-2 > a {
+	color: #ffffff;
+	font-size: 16px;
+}
+
+.square-button-tosca-2 > a:focus, .square-button-tosca-2 > a:hover {
+	color: #23787C;
+	text-decoration: inherit;
+	font-size: 16px;
+}
+
+/* TOSCA 3 : LIGHTER THAN TOSCA 2*/
+.square-button-tosca-3 {
+	background-color: #65CACA !important;
+	border-radius: 0px !important;
+	color: #ffffff !important;
+}
+
+.square-button-tosca-3 > a {
+	color: #ffffff;
+	font-size: 16px;
+}
+
+.square-button-tosca-3 > a:focus, .square-button-tosca-3 > a:hover {
+	color: #23787C;
+	text-decoration: inherit;
+	font-size: 16px;
+}
+
+
+.sidebar-panel {
+	background-color: transparent;
+	margin-left: 5px;
+	border: none;
+	border-radius: 0px;
+}
+
+.sidebar-panel-container {
+	background-color: transparent;
+	border-radius: 0px;
+	border: none;
+}
+
+.btn-sidebar-edit {
+	padding: 1px 3px;
+  	font-size: 12px;
+  	line-height: 1;
+  	border-radius: 0px;	
+}
+/* END OF SIDEBAR STYLES */
+
+.affix {
+	margin-top: -160px;
+	margin-bottom: 180px;
+	width: 62.5%;
+}
+textarea {
+	resize: vertical;
+}
+textarea[disabled] {
+	background-color: #ffffff !important;
+}
+.subtitle {
+	margin: 0px 0px 10px;
+	font-size: 24px;
+}
+.btn-primary {
+	background-color: #2980B9;
+}
+.jumbotron {
+	background-color: #FFF;
+}
+.top-topic {
+	font-size: 16px;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+.top-topic .label {
+	line-height: 2;
+}
+.jumbotron .h1, .jumbotron h1 {
+	margin-top: 0px;
+}
