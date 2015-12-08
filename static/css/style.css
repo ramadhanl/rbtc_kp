@@ -649,7 +649,7 @@ p.claim {
 }
 .reviews-section {
 	background: #fff;
-	padding:3em;
+	padding:1.5em;
 	border-top:1px solid #000;
 }
 h3.head {
@@ -660,7 +660,7 @@ h3.head {
 .movie-pic {
 	float:left;
 	width:24%;
-	margin-right:3%;
+	padding: 0px;
 }
 .movie-pic img {
 	width: 100%;

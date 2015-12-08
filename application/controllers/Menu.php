@@ -21,7 +21,7 @@ class Menu extends CI_Controller {
 		$this->load->view('layout/header',array('display'=>"nowplaying"));
 		$this->load->database('qonimax');
 		$this->load->model('Qonimax_models','qoni');
-		$this->load->view('display/nowplaying');
+		$this->load->view('display/nowplaying',array('data'=>$this->qoni->nowplaying()));
 		$this->load->view('layout/footer');
 	}
 	public function comingsoon()
@@ -29,7 +29,7 @@ class Menu extends CI_Controller {
 		$this->load->view('layout/header',array('display'=>"comingsoon"));
 		$this->load->database('qonimax');
 		$this->load->model('Qonimax_models','qoni');
-		$this->load->view('display/comingsoon');
+		$this->load->view('display/comingsoon',array('data'=>$this->qoni->nowplaying()));
 		$this->load->view('layout/footer');
 	}
 	public function saldo()
