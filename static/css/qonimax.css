@@ -1,0 +1,25 @@
+.login-box{
+	float:right;
+	margin-top:5px;
+}
+.login-box input[type='text'] ,.login-box input[type='password']{
+	width: 130px;
+	height: 35px;
+	font-size: 16px;
+	color: #b3b3b3;
+	padding: 5px;
+	border: solid #b3b3b3 1px;
+}
+.login-box input[type='submit']{
+	height: 35px;
+	font-size: 16px;
+	background-color: #FFFFFF;
+	color: black;
+	border: solid #948C89 1px;
+	padding: 5px;
+	width: 120px;
+}
+.login-box p{
+	margin-top: 5px;
+	font-size: 20px;
+}

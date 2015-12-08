@@ -4,37 +4,47 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>RBTC Tools</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<script type='text/javascript' src='//code.jquery.com/jquery-1.9.1.js'></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,400italic,600,600italic' rel='stylesheet' type='text/css'>
-	<link href='<?php echo base_url(); ?>static/css/rbtc.css' rel='stylesheet' type='text/css'>
-	<link href='<?php echo base_url(); ?>static/css/kp.css' rel='stylesheet' type='text/css'>
+<title>Qonimax</title>
+<link href="<?php echo base_url(); ?>static/css/qonimax.css" rel='stylesheet' type='text/css' />
+<link href="<?php echo base_url(); ?>static/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="<?php echo base_url(); ?>static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<script src="<?php echo base_url(); ?>static/js/jquery.min.js"></script>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 </head>
-<body style="padding-top: 20px;">
-	<div class="container">
-			<div class="top_box"></div>
-			<h1 class="title text-center">RBTC Tools</h1>
-			<nav style="margin-top:60px;"  class="navbar navbar-default">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-					</div>
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav">
-							<li><a href="<?php echo base_url(); ?>">Beranda</a></li>
-							<li><a href="<?php echo site_url('anotasi') ?>">Anotasi</a></li>
-							<li><a href="<?php echo site_url('TA') ?>">TA / Thesis</a></li>
-							<li><a href="<?php echo site_url('KP') ?>">Kerja Praktik</a></li>
-						</ul>
-					</div>
+<body>
+	<div class="full">
+			<div class="menu">
+				<ul>
+					<li><a <?php if($display=='home') echo "class='active'";?> href="<?php echo base_url(); ?>"><div class="hm"><i class="home1"></i><i class="home2"></i></div></a></li>
+					<li><a <?php if($display=='nowplaying') echo "class='active'";?> href="<?php echo base_url(); ?>menu/nowplaying"><div class="video"><i class="videos"></i><i class="videos1"></i></div></a></li>
+					<li><a <?php if($display=='comingsoon') echo "class='active'";?> href="<?php echo base_url(); ?>menu/comingsoon"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
+					<li><a <?php if($display=='saldo') echo "class='active'";?> href="<?php echo base_url(); ?>menu/saldo"><div class="bk"><i class="booking"></i><i class="booking1"></i></div></a></li>
+					<li><a <?php if($display=='idk') echo "class='active'";?> href="contact.html"><div class="cnt"><i class="contact"></i><i class="contact1"></i></div></a></li>
+				</ul>
+			</div>
+		<div class="main">
+		<?php if($display=='home'){?>
+		<div class="header" style="background: url('<?php echo base_url(); ?>static/images/header-bg.jpg') no-repeat 0px 0px;">
+		<?php }?>
+		<?php if($display=='nowplaying'){?>
+		<div class="review-content">
+		<?php }?>
+			<div class="top-header">
+				<div class="logo">
+					<a href="index.html"><img src="<?php echo base_url(); ?>static/images/logo.png" alt="" /></a>
+					<p>Qonimax</p>
 				</div>
-			</nav>
-			<div class="row">
+				<div class="login-box">
+				<?php if($this->session->userdata('nama')){?>
+					<p>Hai, <?php echo $this->session->userdata('nama'); }?></p>
+
+				<?php if(!$this->session->userdata('nama')){?>
+					<form action="<?php echo base_url(); ?>menu/login" method="POST">
+						<input name="username" type="text">
+						<input name="password" type="password">
+						<input type="submit" value="Sign in">
+					</form>
+				<?php }?>
+				</div>
+				<div class="clearfix"></div>
+			</div>
