@@ -4,7 +4,7 @@
 	<?php 
 	foreach ($data['nowplaying'] as $key => $value) {
 	?>
-	<div style="margin-top:40px;margin-top:40px;">
+	<div style="margin-top:50px;margin-bottom:550px;">
 		<div class="col-md-3" style="padding-left:0px;">
 			<a href="#"><img style="width:100%;" src="<?php echo base_url(); ?>static/images/film/<?php echo $value->judul;?>.jpg" alt="" /></a>
 		</div>
@@ -32,7 +32,7 @@
 							<p>Pilih jadwal : </p>
 							<?php 
 							foreach ($data['jadwal'][$value->id_film] as $key2 => $value2) {
-								echo '<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#kursi'.$value2->id_jadwal.'">'.$value2->jam_mulai.'</button>';
+								echo '<button style="margin-left:10px;text-decoration:none;" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#kursi'.$value2->id_jadwal.'">'.$value2->jam_mulai.'</button>';
 							}?>
 							</div>
 							<div class="modal-footer">
@@ -56,16 +56,16 @@
 						<h3 style="text-align:center;" class="modal-title">Pilih nomor kursi</h3>
 					</div>
 					<div class="modal-body">
-						<p>Pilih kursi : </p>
+						<p style="font-size:17px;">Pilih kursi : </p>
 						<form action="<?php echo base_url();?>menu/beli_tiket" method="POST">
 							<input name="id_jadwal" type="hidden" value="<?php echo $value2->id_jadwal;?>">
-							<select name="no_kursi">
+							<select name="no_kursi" style="width:200px;height:50px;font-size:26px;">
 							<?php 
 							foreach ($data['kursi'][$value2->id_jadwal] as $key3 => $value3) {
 								echo '<option value="'.$value3->no_kursi.'">'.$value3->no_kursi.'</option>';
 							}?>
 							</select>
-							<input type="submit" value="Beli">
+							<input style="height:50px;margin-top:-100px;" class="b-home" type="submit" value="Beli">
 						</form>
 					</div>
 					<div class="modal-footer">
@@ -79,7 +79,7 @@
 		<?php }?>
 		<div class="col-md-4" style="padding-left:0px;padding-right:0px;">
 			<h1>User Reviews</h1>
-			<div style="overflow:auto;height:330px;width:100%;">
+			<div style=" max-height:500px;height:auto !important;overflow:auto;height:330px;width:100%;padding:10px;">
 			<?php 
 				$reviewed=0;
 				foreach ($data['reviews'][$value->id_film] as $key2 => $value2) {
@@ -87,29 +87,28 @@
 						$reviewed=1;
 			?>
 				<div class="comments">
-					<h4><?php echo $value2->user;?></h4>
+					<h4 style="font-size:20px;color:#4786A9;"><?php echo $value2->user;?></h4>
 					<p><?php echo $value2->tanggal_review;?></p>
 					<div style="display:block; margin-left:-10px;">
 						<div class="rating c-rating">
-							<span>☆</span>
-							<span>☆</span>
-							<span>☆</span>
-							<span>☆</span>
-							<span>☆</span>
-							<span>☆</span>
-							<span>☆</span>
-							<span>☆</span>
-							<span>☆</span>
-							<span>☆</span>
+						<?php 
+						for ($i=$value2->rating+1; $i<=10 ; $i++) { 
+							echo '<span>☆</span>';
+						}
+						
+						for($i=1;$i<=$value2->rating;$i++){
+							echo '<span style="color:#f9dd04;">☆</span>';
+						}
+						?>
 						</div> 	
 						<p class="ratingview c-rating"> &nbsp;<?php echo $value2->rating;?>/10</p><br><br>
-						<p><?php echo $value2->review;?></p>
+						<p style="display:block; margin-left:20px;"><?php echo $value2->review;?></p>
 					</div>
 				</div>
 				<?php }?>
 			</div>
 			<?php 
-				if($reviewed==1){
+				if($reviewed!=1){
 			?>
 			<div class="post-comment">
 				<form action="<?php echo base_url();?>menu/add_rating" method="POST">
@@ -127,7 +126,7 @@
 						<option value="9">9.(Legend!)</option>
 						<option value="10">10.(Perfect!!)</option>
 					</select>
-					<input style="display:block;" type="text" name="review">
+					<textarea style="display:block;" name="review" style="display:block;"></textarea>
 					<input type="submit" value="Submit">
 				</form>
 			</div>

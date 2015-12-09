@@ -4,6 +4,45 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
+/*White Panel */
+.pn {
+	height: 250px;
+	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.pn:hover {
+	box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.3);
+	
+}
+.white-panel {
+	text-align: center;
+	background: #ffffff;
+	color: black;
+    margin-bottom: 20px;
+}
+
+.white-panel p {
+	margin-top: 5px;
+	font-weight: 700;
+	margin-left: 15px;
+}
+.white-panel .white-header {
+	background: #383838;
+	padding: 3px;
+	margin-bottom: 15px;
+	color: #FC5700;
+}
+.white-panel .small {
+	font-size: 10px;
+	color: #ccd1d9;
+}
+
+.white-panel i {
+	color: #68dff0;
+	padding-right: 4px;
+	font-size: 14px;
+}
+
 body{
 	padding:0;
 	margin:0;
@@ -804,6 +843,14 @@ p.info {
 	margin-top:1em;
 }
 a.b-home:hover{
+	background:#fc5700;
+	text-decoration: none;
+}
+a{
+	text-decoration: none !important;
+}
+
+button.b-home:hover{
 	background:#fc5700;
 }
 /*--contact--*/

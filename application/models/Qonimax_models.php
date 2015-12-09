@@ -9,6 +9,7 @@ class Qonimax_models extends CI_Model {
       parent::__construct();
    }
 
+
    public function load_data(){
       $daftar_film=$this->db->get('daftar_film')->result();
       //update rating
@@ -33,6 +34,13 @@ class Qonimax_models extends CI_Model {
       return $data;
    }
 
+   public function load_datatransaksi(){
+      $transaksi=$this->db->get_where('transaksi',array('username'=>$this->session->userdata('username')))->result();
+            
+      $data = array('transaksi'=>$transaksi);
+      return $data;
+   }
+
    public function add_rating($id_film,$rating,$review)
    {
       $this->db->insert('user_reviews',array('user'=>$this->session->userdata('username'),'tanggal_review'=>date('Y-m-d'),'id_film'=>$id_film,'rating'=>$rating,'review'=>$review));
@@ -46,6 +54,10 @@ class Qonimax_models extends CI_Model {
       $sisa_kursi=$this->db->get_where('kursi',array('id_jadwal'=>$id_jadwal,'status'=>0))->num_rows();
       $this->db->where('id_jadwal', $id_jadwal);
       $this->db->update('jadwal',array('sisa_kursi'=>$sisa_kursi));
+      $sql=$this->db->get_where('jadwal',array('id_jadwal'=>$id_jadwal))->row();
+      $sql2=$this->db->get_where('daftar_film',array('id_film'=>$sql->id_film))->row();
+      $kode_transaksi = substr(str_shuffle("0123456789ABCDEFGHJKLMNOPQRSTUVWXYZ"), 0, 10);
+      $this->db->insert('transaksi',array('teater'=>$sql->teater,'judul_film'=>$sql2->judul,'jam_tayang'=>$sql->jam_mulai,'kode_transaksi'=>$kode_transaksi,'id_jadwal'=>$id_jadwal,'no_kursi'=>$no_kursi,'username'=>$this->session->userdata('username'),'timestamp'=>time()));
    }
 
    public function generate_data()
@@ -140,7 +152,32 @@ class Qonimax_models extends CI_Model {
 
    public function random_voucher()
    {
-      $this->db->empty_table('voucher');
+      //$this->db->empty_table('voucher');
+      $no_voucher = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ"), 0, 15);
+      $this->db->insert('voucher',array('harga'=>$harga,'no_voucher'=>$no_voucher,'status'=>0));
+
+   }
+
+   public function proses_tambahfilm($file,$judul_film,$sinopsis,$durasi,$kategori,$awal_tayang,$akhir_tayang)
+   {
+      $this->db->insert('daftar_film',array('judul'=>$judul_film,'sinopsis'=>$sinopsis,'durasi'=>$durasi,'kategori'=>$kategori,'awal_tayang'=>$awal_tayang,'akhir_tayang'=>$akhir_tayang));
+   }
+
+   public function isi_saldo($no_voucher)
+   {
+      $sql=$this->db->get_where('voucher',array('no_voucher'=>$no_voucher,'status'=>0));
+      if($sql->num_rows()!=0){
+         $this->db->where('no_voucher',$no_voucher);
+         $this->db->update('voucher',array('status' => 1));
+         $hasil = $sql->row();
+         $saldo = $this->session->userdata('saldo') + $hasil->harga;
+         $this->session->set_userdata('saldo',$saldo);
+         $status=1;
+      }
+      else{
+         $status=0;
+      }
+      return $status;
    }
 }
 ?>

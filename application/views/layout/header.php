@@ -5,6 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html>
 <head>
 <title>Qonimax</title>
+<link href="<?php echo base_url(); ?>static/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="<?php echo base_url(); ?>static/css/qonimax.css" rel='stylesheet' type='text/css' />
 <link href="<?php echo base_url(); ?>static/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <link href="<?php echo base_url(); ?>static/css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -18,7 +19,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="full">
 			<div class="menu">
 				<ul><?php if($this->session->userdata('privilege') && $this->session->userdata('privilege')=='pegawai'){?>
-					<li><a <?php if($display=='home') echo "class='active'";?> href="<?php echo base_url(); ?>"><div class="hm"><i class="home1"></i><i class="home2"></i></div></a></li>
 					<li><a <?php if($display=='displayvoucher') echo "class='active'";?> href="<?php echo base_url(); ?>menu/display_voucher"><div class="video"><i class="videos"></i><i class="videos1"></i></div></a></li>
 					<li><a <?php if($display=='tambahfilm') echo "class='active'";?> href="<?php echo base_url(); ?>menu/tambahfilm"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
 
@@ -28,12 +28,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<li><a <?php if($display=='comingsoon') echo "class='active'";?> href="<?php echo base_url(); ?>menu/comingsoon"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
 					<?php if($this->session->userdata('name')){?>
 					<li><a <?php if($display=='saldo') echo "class='active'";?> href="<?php echo base_url(); ?>menu/saldo"><div class="bk"><i class="booking"></i><i class="booking1"></i></div></a></li>
+					<li><a <?php if($display=='transaksi') echo "class='active'";?> href="<?php echo base_url(); ?>menu/transaksi"><div class="bk"><i class="booking"></i><i class="booking1"></i></div></a></li>
 					<?php }}?>
 				</ul>
 			</div>
 		<div class="main">
 		<?php if($display=='home'){?>
-		<div class="header" style="background: url('<?php echo base_url(); ?>static/images/header-bg.jpg') no-repeat 0px 0px;">
+		<div class="header" >
 		<?php }?>
 		<?php if($display=='nowplaying'){?>
 		<div class="review-content">

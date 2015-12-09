@@ -24,12 +24,21 @@ class Menu extends CI_Controller {
 		$this->qoni->generate_data();
 	}
 
+	public function transaksi()
+	{
+		$this->load->database('qonimax');
+		$this->load->model('Qonimax_models','qoni');
+		$this->load->view('layout/header',array('display'=>"transaksi",'data'=>$this->qoni->load_datatransaksi()));
+		$this->load->view('display/transaksi');
+		$this->load->view('layout/footer');
+	}
+
 	public function beli_tiket()
 	{
 		$this->load->database('qonimax');
 		$this->load->model('Qonimax_models','qoni');
 		$this->qoni->beli_tiket($this->input->post('id_jadwal'),$this->input->post('no_kursi'));
-		redirect(base_url("menu/nowplaying"));	
+		redirect(base_url("menu/transaksi"));	
 	}
 
 	public function add_rating()
@@ -61,7 +70,19 @@ class Menu extends CI_Controller {
 		$this->load->view('layout/header',array('display'=>"saldo"));
 		$this->load->database('qonimax');
 		$this->load->model('Qonimax_models','qoni');
-		$this->load->view('display/saldo');
+		$data=null;
+		$this->load->view('display/saldo',array('data'=>$data));
+		$this->load->view('layout/footer');
+	}
+
+	public function isi_saldo()
+	{
+		$this->load->view('layout/header',array('display'=>"saldo"));
+		$this->load->database('qonimax');
+		$this->load->model('Qonimax_models','qoni');
+		$status = $this->qoni->isi_saldo($this->input->post('no_voucher'));
+		$data = array('status' => $status);
+		$this->load->view('display/saldo',array('data'=>$data));
 		$this->load->view('layout/footer');
 	}
 
@@ -96,6 +117,55 @@ class Menu extends CI_Controller {
 		$this->load->model('Qonimax_models','qoni');
 		$data = array('status_beli' => 0 );
 		$this->load->view('display/pegawai/display_voucher',array('data'=>$data));
+		$this->load->view('layout/footer');
+	}
+
+	public function tambahfilm()
+	{
+		$this->load->view('layout/header',array('display'=>"tambahfilm"));
+		$this->load->database('qonimax');
+		$this->load->model('Qonimax_models','qoni');
+		$data=null;
+		$this->load->view('display/pegawai/tambahfilm',array('data'=>$data));
+		$this->load->view('layout/footer');
+	}
+
+	public function proses_tambahfilm()
+	{
+		$this->load->database('qonimax');
+		$this->load->model('Qonimax_models','qoni');
+		
+		$config['upload_path'] = 'C:/wamp/www/qonimax/static/images/film/';
+		$config['allowed_types'] = 'gif|jpg|jpeg|png|iso|dmg|zip|rar|doc|docx|xls|xlsx|ppt|pptx|csv|ods|odt|odp|pdf|rtf|sxc|sxi|txt|exe|avi|mpeg|mp3|mp4|3gp';
+		$config['max_size']	= '300';
+		$config['max_width']  = '1024';
+		$config['max_height']  = '768';
+		$config['overwrite']  = TRUE;
+		$file = $_FILES['userfile']['name'];
+		$ext = substr(strrchr($file, '.'), 1);
+		$new_name = $this->input->post('judul_film').".$ext";
+		$config['file_name'] = $new_name;
+		$config['convert_dots'] = FALSE;
+		$this->load->library('upload',$config);
+		$this->upload->initialize($config);
+		if(!$this->upload->do_upload('userfile')){
+			$upload_data = $this->upload->data();
+			echo $this->upload->display_errors();
+			$sukses=0;
+		}
+		else{
+			$file_data = $this->upload->data();
+			$data = base_url().'images/'.$file_data['file_name'];
+			$sukses=1;
+		}
+
+
+		$this->qoni->proses_tambahfilm($file,$this->input->post('judul_film'),$this->input->post('sinposis'),$this->input->post('durasi'),$this->input->post('kategori'),$this->input->post('awal_tayang'),$this->input->post('akhir_tayang'));
+		$data = array('sukses' => $sukses);
+		$this->load->view('layout/header',array('display'=>"tambahfilm"));
+		$this->load->database('qonimax');
+		$this->load->model('Qonimax_models','qoni');
+		$this->load->view('display/pegawai/tambahfilm',array('data'=>$data));
 		$this->load->view('layout/footer');
 	}
 
