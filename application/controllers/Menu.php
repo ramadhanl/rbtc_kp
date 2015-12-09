@@ -16,6 +16,30 @@ class Menu extends CI_Controller {
 		$this->load->view('display/home');
 		$this->load->view('layout/footer');
 	}
+
+	public function generate_data()
+	{
+		$this->load->database('qonimax');
+		$this->load->model('Qonimax_models','qoni');
+		$this->qoni->generate_data();
+	}
+
+	public function beli_tiket()
+	{
+		$this->load->database('qonimax');
+		$this->load->model('Qonimax_models','qoni');
+		$this->qoni->beli_tiket($this->input->post('id_jadwal'),$this->input->post('no_kursi'));
+		redirect(base_url("menu/nowplaying"));	
+	}
+
+	public function add_rating()
+	{
+		$this->load->database('qonimax');
+		$this->load->model('Qonimax_models','qoni');
+		$this->qoni->add_rating($this->input->post('id_film'),$this->input->post('rating'),$this->input->post('review'));
+		redirect(base_url("menu/nowplaying"));	
+	}
+
 	public function nowplaying()
 	{
 		$this->load->view('layout/header',array('display'=>"nowplaying"));

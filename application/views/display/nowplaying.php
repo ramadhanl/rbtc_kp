@@ -57,7 +57,8 @@
 					</div>
 					<div class="modal-body">
 						<p>Pilih kursi : </p>
-						<form>
+						<form action="<?php echo base_url();?>menu/beli_tiket" method="POST">
+							<input name="id_jadwal" type="hidden" value="<?php echo $value2->id_jadwal;?>">
 							<select name="no_kursi">
 							<?php 
 							foreach ($data['kursi'][$value2->id_jadwal] as $key3 => $value3) {
@@ -80,7 +81,10 @@
 			<h1>User Reviews</h1>
 			<div style="overflow:auto;height:330px;width:100%;">
 			<?php 
+				$reviewed=0;
 				foreach ($data['reviews'][$value->id_film] as $key2 => $value2) {
+					if ($value2->user==$this->session->userdata('username'))
+						$reviewed=1;
 			?>
 				<div class="comments">
 					<h4><?php echo $value2->user;?></h4>
@@ -104,23 +108,30 @@
 				</div>
 				<?php }?>
 			</div>
+			<?php 
+				if($reviewed==1){
+			?>
 			<div class="post-comment">
-				<form>
+				<form action="<?php echo base_url();?>menu/add_rating" method="POST">
+					<input name="id_film" type="hidden" value="<?php echo $value->id_film;?>">
 					<select name="rating">
 						<option value="0">Your rating</option>	
 						<option value="1">1.Poor</option>
-						<option value="2">1.5(Below average)</option>
-						<option value="3">2.Average</option>
-						<option value="4">2.5(Above average)</option>
-						<option value="5">3.Watchable</option>
-						<option value="6">3.5(Good)</option>
-						<option value="7">4.5(Very good)</option>
-						<option value="8">5.Outstanding</option>
+						<option value="2">2.(Below average)</option>
+						<option value="3">3.Average</option>
+						<option value="4">4.(Above average)</option>
+						<option value="5">5.Watchable</option>
+						<option value="6">6(Good)</option>
+						<option value="7">7.(Very good)</option>
+						<option value="8">8.Outstanding</option>
+						<option value="9">9.(Legend!)</option>
+						<option value="10">10.(Perfect!!)</option>
 					</select>
-					<input style="display:block;" type="text" name="comment">
+					<input style="display:block;" type="text" name="review">
 					<input type="submit" value="Submit">
 				</form>
 			</div>
+			<?php }?>
 		</div>
 	</div>
 <?php }?>

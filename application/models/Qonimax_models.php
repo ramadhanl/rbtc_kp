@@ -9,6 +9,60 @@ class Qonimax_models extends CI_Model {
       parent::__construct();
    }
 
+   public function add_rating($id_film,$rating,$review)
+   {
+      $this->db->insert('user_reviews',array('user'=>$this->session->userdata('username'),'tanggal_review'=>date('Y-m-d'),'id_film'=>$id_film,'rating'=>$rating,'review'=>$review));
+   }
+
+   public function beli_tiket($id_jadwal,$no_kursi)
+   {
+      $this->db->where('id_jadwal', $id_jadwal);
+      $this->db->where('no_kursi', $no_kursi);
+      $this->db->update('kursi',array('status' => 1));
+      $sisa_kursi=$this->db->get_where('kursi',array('id_jadwal'=>$id_jadwal,'status'=>0))->num_rows();
+      $this->db->where('id_jadwal', $id_jadwal);
+      $this->db->update('jadwal',array('sisa_kursi'=>$sisa_kursi));
+   }
+
+   public function generate_data()
+   {
+      $mtime = microtime(); 
+      $mtime = explode(" ",$mtime); 
+      $mtime = $mtime[1] + $mtime[0]; 
+      $starttime = $mtime;
+
+      $this->db->empty_table('kursi');
+      $this->db->empty_table('jadwal');
+      $nowplaying=$this->db->get_where('daftar_film',array('awal_tayang <'=> date('Y-m-d'),'akhir_tayang >' =>date('Y-m-d')))->result();
+      $x=1;
+      foreach ($nowplaying as $row1) {
+         $this->db->insert('jadwal',array('teater'=>$x,'jam_mulai' => "11:30",'jam_selesai'=>"16:00",'id_film'=>$row1->id_film,'tipe'=>$row1->kualitas));
+         $this->db->insert('jadwal',array('teater'=>$x,'jam_mulai' => "16:00",'jam_selesai'=>"18:30",'id_film'=>$row1->id_film,'tipe'=>$row1->kualitas));
+         $this->db->insert('jadwal',array('teater'=>$x,'jam_mulai' => "18:30",'jam_selesai'=>"21:00",'id_film'=>$row1->id_film,'tipe'=>$row1->kualitas));
+         $this->db->insert('jadwal',array('teater'=>$x,'jam_mulai' => "21:00",'jam_selesai'=>"23:30",'id_film'=>$row1->id_film,'tipe'=>$row1->kualitas));
+         $x++;
+      }
+
+      $jadwal=$this->db->get('jadwal');
+      foreach ($jadwal->result() as $row) {
+         for($i='A';$i<='P';$i++){
+            for($j=1;$j<=18;$j++){
+               $no_kursi=$i.$j;
+               $this->db->insert('kursi',array('no_kursi' => $no_kursi,'id_jadwal'=>$row->id_jadwal,'status'=>0));
+            }
+         }
+      $this->db->where('id_jadwal', $row->id_jadwal);
+      $this->db->update('jadwal',array('sisa_kursi' => 288));
+      }
+
+      $mtime = microtime(); 
+      $mtime = explode(" ",$mtime); 
+      $mtime = $mtime[1] + $mtime[0]; 
+      $endtime = $mtime; 
+      $totaltime = ($endtime - $starttime);
+      echo "Running time : ".$totaltime." seconds";
+   }
+
    public function login($username,$password)
    {
       $sql=$this->db->get_where('account',array('username'=>$username,'pass'=>$password));
