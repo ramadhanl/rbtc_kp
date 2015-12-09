@@ -1,23 +1,19 @@
 <div class="header-info">
-				<h1>BIG HERO 6</h1>
-				<p class="age"><a href="#">All Age</a> Don Hall, Chris Williams</p>
-				<p class="review">Rating	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;  8,5/10</p>
-				<p class="review reviewgo">Genre	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp; Animation, Action, Comedy</p>
-				<p class="review">Release &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp; 7 November 2014</p>
-				<p class="special">The special bond that develops between plus-sized inflatable robot Baymax, and prodigy Hiro Hamada, who team up with a group of friends to form a band of high-tech heroes.</p>
-				<a class="video" href="#"><i class="video1"></i>WATCH TRAILER</a>
-				<a class="book" href="#"><i class="book1"></i>BOOK TICKET</a>
+				<h1><?php echo $data['top_rated'][0]->judul;?></h1>
+				<p class="review">Rating	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;  <?php echo $data['top_rated'][0]->rating;?>/10</p>
+				<p class="review">Duration	&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;  <?php echo $data['top_rated'][0]->durasi;?></p>
+				<p class="review reviewgo">Genre	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp; <?php echo $data['top_rated'][0]->kategori;?></p>
+				<p class="review">Release &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp; <?php echo $data['top_rated'][0]->awal_tayang;?></p>
+				<p class="special"><?php echo $data['top_rated'][0]->sinopsis;?></p>
+				<a class="book" href="<?php echo base_url();?>menu/nowplaying""><i class="book1"></i>BOOK TICKET</a>
 			</div>
 		</div>
 		<div class="review-slider">
-			 <ul id="flexiselDemo1">
-			<li><img src="<?php echo base_url(); ?>static/images/r1.jpg" alt=""/></li>
-			<li><img src="<?php echo base_url(); ?>static/images/r2.jpg" alt=""/></li>
-			<li><img src="<?php echo base_url(); ?>static/images/r3.jpg" alt=""/></li>
-			<li><img src="<?php echo base_url(); ?>static/images/r4.jpg" alt=""/></li>
-			<li><img src="<?php echo base_url(); ?>static/images/r5.jpg" alt=""/></li>
-			<li><img src="<?php echo base_url(); ?>static/images/r6.jpg" alt=""/></li>
-		</ul>
+			<ul id="flexiselDemo1">
+			 <?php foreach ($data['nowplaying'] as $key => $value) {?>
+				<li><img src="<?php echo base_url(); ?>static/images/film/<?php echo $value->judul;?>.jpg" alt=""/></li>
+			<?php }?>
+			</ul>
 			<script type="text/javascript">
 		$(window).load(function() {
 			
@@ -75,12 +71,11 @@
 			<div class="clearfix"></div>
 		</div>
 		<div class="more-reviews">
-			 <ul id="flexiselDemo2">
-			<li><img src="<?php echo base_url(); ?>static/images/m1.jpg" alt=""/></li>
-			<li><img src="<?php echo base_url(); ?>static/images/m2.jpg" alt=""/></li>
-			<li><img src="<?php echo base_url(); ?>static/images/m3.jpg" alt=""/></li>
-			<li><img src="<?php echo base_url(); ?>static/images/m4.jpg" alt=""/></li>
-		</ul>
+			<ul id="flexiselDemo2">
+				<?php foreach ($data['daftar_film'] as $key => $value) {?>
+					<li><img src="<?php echo base_url(); ?>static/images/film/<?php echo $value->judul;?>.jpg" alt=""/></li>
+				<?php }?>
+			</ul>
 			<script type="text/javascript">
 		$(window).load(function() {
 			

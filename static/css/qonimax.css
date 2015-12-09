@@ -1,3 +1,23 @@
+.input-saldo{
+	width: 130px;height: 135px;font-size: 16px;display:inline-block;color: #b3b3b3;padding: 5px;border: solid #b3b3b3 1px;
+}
+.saldo input[type='submit']{
+	background:#272e34;
+	padding:0.7em 2.5em;
+	display:inline-block;
+	color:#FFF;
+	text-decoration:none;
+	margin-top:1em;
+}
+input[type='submit'].b-home:hover{
+	background:#fc5700;
+}
+
+.saldo p{
+	font-size: 20px;
+}
+
+
 .login-box{
 	float:right;
 	margin-top:5px;
@@ -18,6 +38,20 @@
 	border: solid #948C89 1px;
 	padding: 5px;
 	width: 120px;
+}
+
+.logoutpo p a{
+	height: 235px;
+	font-size: 72px !important;
+	background-color: #FFFFFF;
+	color: black;
+	border: solid #948C89 1px;
+	padding: 5px;
+	width: 120px;
+}
+.logout a:hover{
+	background-color: black;
+	color: #FFFFFF;
 }
 .login-box p{
 	margin-top: 5px;

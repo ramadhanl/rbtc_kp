@@ -131,6 +131,10 @@
 					<input type="submit" value="Submit">
 				</form>
 			</div>
+			<?php }
+			else{?>
+				<div class="post-comment" style="height:60px;">
+				</div>
 			<?php }?>
 		</div>
 	</div>

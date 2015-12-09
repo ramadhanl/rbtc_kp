@@ -12,7 +12,7 @@ class Menu extends CI_Controller {
 	{
 		$this->load->database('qonimax');
 		$this->load->model('Qonimax_models','qoni');
-		$this->load->view('layout/header',array('display'=>"home"));
+		$this->load->view('layout/header',array('display'=>"home",'data'=>$this->qoni->load_data()));
 		$this->load->view('display/home');
 		$this->load->view('layout/footer');
 	}
@@ -53,7 +53,7 @@ class Menu extends CI_Controller {
 		$this->load->view('layout/header',array('display'=>"comingsoon"));
 		$this->load->database('qonimax');
 		$this->load->model('Qonimax_models','qoni');
-		$this->load->view('display/comingsoon',array('data'=>$this->qoni->nowplaying()));
+		$this->load->view('display/comingsoon',array('data'=>$this->qoni->comingsoon()));
 		$this->load->view('layout/footer');
 	}
 	public function saldo()
@@ -72,6 +72,7 @@ class Menu extends CI_Controller {
 		$this->qoni->login($this->input->post('username'),$this->input->post('password'));
 		redirect(base_url(""));		
 	}
+	
 	public function logout()
 	{
 		$this->session->unset_userdata('username');
@@ -80,6 +81,34 @@ class Menu extends CI_Controller {
 		redirect(base_url());
 	}
 
+	public function random_voucher()
+	{
+		$this->load->database('qonimax');
+		$this->load->model('Qonimax_models','qoni');
+		$this->qoni->random_voucher();
+		
+	}
+
+	public function display_voucher()
+	{
+		$this->load->view('layout/header',array('display'=>"displayvoucher"));
+		$this->load->database('qonimax');
+		$this->load->model('Qonimax_models','qoni');
+		$data = array('status_beli' => 0 );
+		$this->load->view('display/pegawai/display_voucher',array('data'=>$data));
+		$this->load->view('layout/footer');
+	}
+
+	public function beli_voucher()
+	{
+		$harga = $this->input->post('harga');
+		$this->load->view('layout/header',array('display'=>"displayvoucher"));
+		$this->load->database('qonimax');
+		$this->load->model('Qonimax_models','qoni');
+		$data = array('status_beli' => 1,'voucher'=>$this->qoni->beli_voucher($harga));
+		$this->load->view('display/pegawai/display_voucher',array('data'=>$data));
+		$this->load->view('layout/footer');
+	}	
 }
 
 /* End of file Menu.php */
